@@ -1,0 +1,20 @@
+.searchDiv {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.searchIcon {
+    position: relative;
+    left: 25px;
+}
+
+.searchInput {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid gray;
+    margin-left: 5px;
+    padding: 5px;
+    padding-left: 25px;
+}

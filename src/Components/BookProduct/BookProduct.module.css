@@ -1,0 +1,22 @@
+.BookProduct {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  height: 350px;
+  width: 500px;
+}
+
+.Dropdown {
+  padding-right: 100px;
+  padding-bottom: 20px;
+}
+
+.Confirmation {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-endsx;
+}
+
+.Confirmation button {
+  margin: 5px;
+}

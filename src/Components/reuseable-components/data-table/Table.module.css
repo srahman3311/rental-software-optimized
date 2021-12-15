@@ -1,0 +1,11 @@
+.table_headers {
+    background:rgb(236, 236, 236);
+    padding: 10px;
+    width: 100vw;
+}
+
+.table_data {
+    padding: 10px;
+    width: 100vw;
+    text-align: center;
+}
