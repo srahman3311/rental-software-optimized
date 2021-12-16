@@ -15,11 +15,17 @@ const Modal = (props) => {
   );
 };
 
-const ModalPropsAreEqual = (prevModal, nextModal) => {
-  return (
-    prevModal.show === nextModal.show ||
-    prevModal.children === nextModal.children
-  );
-};
+// const ModalPropsAreEqual = (prevModal, nextModal) => {
+//   return (
+//     prevModal.show === nextModal.show ||
+//     prevModal.children === nextModal.children
+//   );
+// };
 
-export default React.memo(Modal, ModalPropsAreEqual);
+// export default React.memo(Modal, ModalPropsAreEqual);
+
+
+
+// If we use React.memo just to prevent re-render then we need to use a big amount of code repeatedly. If html nodes 
+// not that big then causing re-render will not have any effect on performance. 
+export default Modal;

@@ -17,7 +17,7 @@ function SearchInputField({ setSearchText }) {
             <SearchIcon />
             <form className="searchBox">
                 <input
-                    className="searchInput" 
+                    className={styles.searchInput} 
                     type = "text"
                     placeholder="Enter Name/Code to Search"
                     onChange={searchData}

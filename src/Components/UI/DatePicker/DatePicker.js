@@ -26,6 +26,8 @@ const DatePicker = ({ startDate, setStartDate, endDate, setEndDate }) => {
             <img
                 src="https://img.icons8.com/ios/50/000000/calendar--v1.png"
                 alt="calendar_images"
+                height="20px"
+                width="20px"
             />
         </div>
     ));

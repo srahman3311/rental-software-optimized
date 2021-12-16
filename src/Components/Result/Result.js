@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from "react";
 import styles from "./Result.module.css";
 
 const Result = ({
   isBook,
-  result,
+  rentPeriod,
+  selectedProductInfo,
   setShowMainModal,
   setShowModal,
   updateStorage,
 }) => {
+
+  const { price, minimum_rent_period } = selectedProductInfo;
+
   return (
     <div>
       <h3>{isBook ? "Book" : "Return"} a product</h3>
-      {/* return result */}
-
-      {/* book result */}
-      {result.days >= result.minimum_rent_period ? (
-        <h3>Your estimate price is :{result.price * result.days} </h3>
+      {rentPeriod >= minimum_rent_period ? (
+        <h3>Your estimate price is :{price * rentPeriod} </h3>
       ) : (
         <div>
-          Minimum rent period is : {result.minimum_rent_period}.{<br />} You
+          Minimum rent period is : {minimum_rent_period}.{<br />} You
           should select days more than minimum rent period
         </div>
       )}
@@ -29,7 +29,7 @@ const Result = ({
           onClick={() => {
             setShowModal(false);
             setShowMainModal(prevState => !prevState)
-            updateStorage();
+            updateStorage(isBook ? "Book" : "Return", rentPeriod);
           }}
         >
           Yes

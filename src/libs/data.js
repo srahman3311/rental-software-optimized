@@ -6,3 +6,8 @@ export const tableHeaders = [
     "Durability",
     "Mileage"
 ];
+
+export const repairOptions = [
+    { value: true, label: "Yes" },
+    { value: false, label: "No" },
+];

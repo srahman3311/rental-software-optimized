@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useLocalStorage from "../../hooks/useLocalStorage";
-import { tableHeaders } from "../../libs/data";
+import useSearch from "../../hooks/useSearch";
+import { tableHeaders, repairOptions } from "../../libs/data";
 import BookProduct from "../BookProduct/BookProduct";
 import ReturnProduct from "../ReturnProduct/ReturnProduct";
 import Button from "../reuseable-components/Button";
@@ -14,12 +15,25 @@ import SearchInputField from "../reuseable-components/SearchInputField";
 
 const DataTable = () => {
 
+
   // Change on searchText will cause component re-render, as this is being used a dependency inside useEffect 
   // hook's dependency array.  
   const [searchText, setSearchText] = useState("");
-  const { data, tableData } = useLocalStorage(searchText);
+  
+  // Custom hook calls
+  const { data, options } = useLocalStorage();
+  const tableData = useSearch(searchText);
+
+  // Other states
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState("book_product");
+  const [selectedProductInfo, setSelectedProductInfo] = useState({
+    code: "",
+    needing_repair: false,
+    mileage: 0,
+    price: 0,
+    minimum_rent_period: 0,
+  });
 
   function displayHideModal(event) {
 
@@ -28,10 +42,114 @@ const DataTable = () => {
 
   }
 
+  function handleSelect(value) {
+
+    console.log(value);
+
+    if(typeof value === "boolean") {
+      return setSelectedProductInfo(currentValue => {return { ...currentValue, needing_repair: value }});
+    } 
+
+    // Using for loop instead of forEach for performance boost. forEach will run till the last item but with for
+    // loop we can break out of it once we have found our item.
+
+    // Initializing len with the value of data.length, it will also boost the performance.
+    const len = data.length;
+
+    for(let x = 0; x < len; x++) {
+
+      const { code, mileage, price, minimum_rent_period, needing_repair } = data[x];
+
+      if(code === value) {
+
+        setSelectedProductInfo(currentValue => {
+
+          return {
+            ...currentValue,
+            code,
+            needing_repair,
+            mileage,
+            price,
+            minimum_rent_period
+          }
+
+        });
+
+        break;
+
+      };
+
+    }
+  }
+
+  function updateStorage(actionType, rentPeriod) {
+
+    const { code, needing_repair } = selectedProductInfo;
+
+    if (data) {
+
+      let updatedData = data;
+
+      for (let index = 0; index < updatedData.length; index++) {
+
+        const product = updatedData[index];
+
+        if(product.code === code) {
+
+          product.needing_repair = needing_repair;
+
+          // If function is invoked from return product modal
+          if(actionType === "Return") {
+
+            if(product.type === "plain") product.durability = product.durability - rentPeriod * 1;
+
+            product.durability = product.durability - (rentPeriod * 2);
+            product.mileage = product.mileage + (rentPeriod * 10);
+
+          }
+
+          break;
+        }
+
+      }
+
+      localStorage.setItem("apiData", JSON.stringify(updatedData));
+
+      setSelectedProductInfo(currentValue => {
+
+        return {
+          ...currentValue,
+          code: "",
+          needing_repair: false,
+          mileage: 0
+        }
+
+      });
+    }
+
+  }
+
+
   const children = 
-    modalType === "book_product" ? 
-    <BookProduct data={data} setShowMainModal = {setShowModal} /> : 
-    <ReturnProduct data={data} setShowMainModal = {setShowModal} />;
+    modalType === "book_product" 
+    ? 
+    <BookProduct 
+      selectedProductInfo = {selectedProductInfo} 
+      setShowMainModal = {setShowModal}
+      options = {options} 
+      repairOptions = {repairOptions}
+      handleSelect = {handleSelect}
+      updateStorage = {updateStorage}
+    /> 
+    : 
+    <ReturnProduct 
+      selectedProductInfo = {selectedProductInfo}
+      setShowMainModal = {setShowModal} 
+      options = {options}
+      repairOptions = {repairOptions}
+      handleSelect = {handleSelect}
+      updateStorage = {updateStorage}
+    />;
 
 
 
