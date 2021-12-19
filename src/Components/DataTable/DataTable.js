@@ -20,8 +20,11 @@ const DataTable = () => {
   // hook's dependency array.  
   const [searchText, setSearchText] = useState("");
   
+  // To refetch updated data after booking or returning product
+  const [apiData, setApiData] = useState(JSON.parse(localStorage.getItem("apiData")));
+  
   // Custom hook calls
-  const { data, options, bookableProductOptions, returnableProductOptions } = useLocalStorage();
+  const { data, bookableProductOptions, returnableProductOptions } = useLocalStorage(apiData);
   const tableData = useSearch(searchText);
 
   // Other states
@@ -97,12 +100,14 @@ const DataTable = () => {
         if(product.code === code) {
 
           product.needing_repair = needing_repair;
+          product.availability = false;
 
           // If function is invoked from return product modal
           if(actionType === "Return") {
 
             if(product.type === "plain") product.durability = product.durability - rentPeriod * 1;
 
+            product.availability = true;
             product.durability = product.durability - (rentPeriod * 2);
             product.mileage = product.mileage + (rentPeriod * 10);
 
@@ -114,6 +119,7 @@ const DataTable = () => {
       }
 
       localStorage.setItem("apiData", JSON.stringify(updatedData));
+      setApiData(JSON.parse(localStorage.getItem("apiData")));
 
       setSelectedProductInfo(currentValue => {
 
