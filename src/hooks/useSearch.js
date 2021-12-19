@@ -32,8 +32,7 @@ function useSearch(searchText) {
                 durability,
                 mileage,
                 availability,
-                needing_repair,
-                max_durability
+                needing_repair
             } = item;
 
             dataForTable.push({
@@ -43,7 +42,7 @@ function useSearch(searchText) {
                     name,
                     availability ? "True" : "False",
                     needing_repair ? "True" : "False",
-                    durability / max_durability,
+                    durability,
                     mileage
 
                 ]

@@ -20,11 +20,8 @@ const DataTable = () => {
   // hook's dependency array.  
   const [searchText, setSearchText] = useState("");
   
-  // To refetch updated data after booking or returning product
-  const [apiData, setApiData] = useState(JSON.parse(localStorage.getItem("apiData")));
-  
   // Custom hook calls
-  const { data, bookableProductOptions, returnableProductOptions } = useLocalStorage(apiData);
+  const { data, bookableProductOptions, returnableProductOptions } = useLocalStorage();
   const tableData = useSearch(searchText);
 
   // Other states
@@ -119,8 +116,6 @@ const DataTable = () => {
       }
 
       localStorage.setItem("apiData", JSON.stringify(updatedData));
-      setApiData(JSON.parse(localStorage.getItem("apiData")));
-
       setSelectedProductInfo(currentValue => {
 
         return {
@@ -131,6 +126,10 @@ const DataTable = () => {
         }
 
       });
+
+      // Having some issues with react-select. After booking or returning, just booked or returned product 
+      // still appears as the first value. So I think it's a better idea to refresh the page. 
+      window.location.reload();
     }
 
   }

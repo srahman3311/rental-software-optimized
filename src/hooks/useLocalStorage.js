@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 
-function useLocalStorage(apiData) {
+function useLocalStorage() {
 
     const [data, setData] = useState(null);
     const [bookableProductOptions, setBookableProductOptions] = useState([]);
@@ -30,7 +30,7 @@ function useLocalStorage(apiData) {
         setReturnableProductOptions(returnableProductOptionsArray);
         
 
-    }, [apiData]); 
+    }, []); 
 
     return { data, bookableProductOptions, returnableProductOptions };
 
