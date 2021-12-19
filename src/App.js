@@ -11,7 +11,16 @@ function App() {
 
     if (!localStorage.getItem("apiData")) {
 
-      localStorage.setItem("apiData", JSON.stringify(data));
+      // If a product has mileage set to null, turn it into 0
+      const newData = data.map(item => {
+
+        if(item.mileage === null) return {...item, mileage: 0};
+
+        return item;
+
+      });
+
+      localStorage.setItem("apiData", JSON.stringify(newData));
 
       return setLoading(false);
       

@@ -3,8 +3,10 @@ import useDate from "../../hooks/useDate";
 import Select from "react-select";
 import DatePicker from "../UI/DatePicker/DatePicker";
 import styles from "./BookProduct.module.css";
+import buttonStyles from "../reuseable-components/Button.module.css";
 import Modal from "../UI/Modal/Modal";
 import Result from "../Result/Result";
+import Header from "../reuseable-components/Header";
 
 const BookProduct = ({ 
   selectedProductInfo,
@@ -27,7 +29,7 @@ const BookProduct = ({
 
   return (
     <div className={styles.BookProduct}>
-      <h3>Book a product</h3>
+      <Header text = "Book a product" />
       <div className={styles.Dropdown}>
         <Select
           placeholder="Select product"
@@ -50,8 +52,13 @@ const BookProduct = ({
       />
       {selectedProductInfo.mileage ? <h4>Mileage: {selectedProductInfo.mileage}</h4> : null}
       <div className={styles.Confirmation}>
-        <button onClick={() => setShowModal(prevState => !prevState)}> No</button>
-        <button onClick={() => setShowModal(true)}>Yes</button>
+        <button 
+          className = {buttonStyles.yes_no_button} 
+          onClick={() => setShowModal(prevState => !prevState)}
+        > 
+          No
+        </button>
+        <button className = {buttonStyles.yes_no_button} onClick={() => setShowModal(true)}>Yes</button>
       </div>
 
       <Modal show={showModal}>

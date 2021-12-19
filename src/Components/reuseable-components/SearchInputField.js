@@ -19,7 +19,7 @@ function SearchInputField({ setSearchText }) {
                 <input
                     className={styles.searchInput} 
                     type = "text"
-                    placeholder="Enter Name/Code to Search"
+                    placeholder="Enter Name/Code"
                     onChange={searchData}
                 />
             </form>

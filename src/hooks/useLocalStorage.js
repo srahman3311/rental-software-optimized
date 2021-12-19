@@ -20,15 +20,12 @@ function useLocalStorage() {
         apiData.forEach((item) => {
 
             if(item.availability) bookableProductOptionsArray.push({ value: item.code, label: item.name });
-
             if(!item.availability) returnableProductOptionsArray.push({ value: item.code, label: item.name });
 
         });
 
-       
         setBookableProductOptions(bookableProductOptionsArray);
         setReturnableProductOptions(returnableProductOptionsArray);
-        
 
     }, []); 
 

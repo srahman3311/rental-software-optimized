@@ -2,6 +2,11 @@ import React, { useEffect, useState } from "react";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import useSearch from "../../hooks/useSearch";
 import { tableHeaders, repairOptions } from "../../libs/data";
+
+// Stylesheet
+import tableStyles from "../reuseable-components/data-table/Table.module.css";
+
+// Components
 import BookProduct from "../BookProduct/BookProduct";
 import ReturnProduct from "../ReturnProduct/ReturnProduct";
 import Button from "../reuseable-components/Button";
@@ -162,7 +167,7 @@ const DataTable = () => {
     <div className={styles.container}>
       <div className={styles.tableCon}>
         <SearchInputField setSearchText = {setSearchText} />
-        <table>
+        <table className={tableStyles.data_table}>
           <TableHeader tableHeaders={tableHeaders} />
           {!data ? <LoadingTableData /> : <TableData tableData={tableData} />}
         </table>

@@ -4,8 +4,10 @@ import Select from "react-select";
 
 import DatePicker from "../UI/DatePicker/DatePicker";
 import styles from "./ReturnProduct.module.css";
+import buttonStyles from "../reuseable-components/Button.module.css";
 import Modal from "../UI/Modal/Modal";
 import Result from "../Result/Result";
+import Header from "../reuseable-components/Header";
 
 const ReturnProduct = ({ 
   selectedProductInfo,
@@ -29,7 +31,7 @@ const ReturnProduct = ({
 
   return (
     <div className={styles.BookProduct}>
-      <h3>Return a product</h3>
+      <Header text = "Return a product" />
       <div className={styles.Dropdown}>
         <Select
           placeholder="Select product"
@@ -54,14 +56,17 @@ const ReturnProduct = ({
       {selectedProductInfo.mileage ? <h4>Previous mileage: {selectedProductInfo.mileage}</h4> : null}
       {selectedProductInfo.mileage ? <h4>Mileage increase after return: {rentPeriod * 10}</h4> : null}
       <div className={styles.Confirmation}>
-        <button onClick={() => setShowModal(prevState => !prevState)}> No</button>
-        <button onClick={() => setShowModal(true)}>Yes</button>
+        <button 
+          className = {buttonStyles.yes_no_button}
+          onClick={() => setShowModal(prevState => !prevState)}
+        >
+          No
+        </button>
+        <button className = {buttonStyles.yes_no_button} onClick={() => setShowModal(true)}>Yes</button>
       </div>
 
       <Modal show={showModal}>
         <Result
-          // result={{ ...result, days: rentPeriod }}
-          // days={rentPeriod}
           rentPeriod = {rentPeriod}
           selectedProductInfo = {selectedProductInfo}
           setShowMainModal = {setShowMainModal}

@@ -6,7 +6,7 @@ export default function TableData ({ tableData }) {
         <tbody>
             {tableData.map(item => {
                 return (
-                    <tr key = {item.id}>
+                    <tr className = {styles.table_body_rows} key = {item.id}>
                         {item.data.map((value, index) => {
 
                             return (

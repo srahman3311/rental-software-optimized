@@ -1,11 +1,28 @@
-.button {
-    background-color: black;
+.button, .yes_no_button {
+    background-color: #04293A;
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 7px 20px;
+    border-radius: 5px;
+    cursor: pointer;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 10px;
+    margin: 20px 10px 10px 10px;
+    transition: 0.5s;
+}
+
+.yes_no_button {
+    background-color: #F0D290;
+    color: black;
+}
+
+.button:hover {
+    background-color: #C84B31;
+}
+
+.yes_no_button:hover {
+    background-color: #22577E;
+    color: white;
 }

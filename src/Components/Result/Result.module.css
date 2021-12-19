@@ -1,7 +1,8 @@
 .Confirmation {
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-endsx;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
 }
 
 .Confirmation button {

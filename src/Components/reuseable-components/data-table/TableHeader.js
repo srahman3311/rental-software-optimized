@@ -4,7 +4,7 @@ export default function TableHeader ({ tableHeaders }) {
     
     return (
         <thead>
-            <tr>
+            <tr className={styles.table_header_row}>
                 {tableHeaders.map(header => {
                     return (
                         <th

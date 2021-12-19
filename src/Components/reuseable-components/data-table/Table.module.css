@@ -1,5 +1,23 @@
+.data_table {
+    font-style: italic;
+    /* background-color: blanchedalmond; */
+}
+
+.table_header_row {
+    position: sticky;
+    /* background-color: coral; */
+    background-image: linear-gradient(#1a374dcc, #1a374d, #1a374dcb);
+    color: white;
+}
+
+.table_body_rows:nth-child(even) {
+    /* background-color: #40688225; */
+    background-image: linear-gradient(#1a374d46, #1a374d31, #1a374d59);
+    /* color: white; */
+}
+
 .table_headers {
-    background:rgb(236, 236, 236);
+    /* background:rgb(236, 236, 236); */
     padding: 10px;
     width: 100vw;
 }

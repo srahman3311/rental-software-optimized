@@ -12,14 +12,14 @@
   margin-right: 100px;
 }
 .Dropdown {
-  padding-right: 100px;
   padding-bottom: 20px;
 }
 
 .Confirmation {
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-endsx;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 10px;
 }
 
 .Confirmation button {

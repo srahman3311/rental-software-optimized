@@ -8,12 +8,15 @@
 .searchIcon {
     position: relative;
     left: 25px;
+    color: #1A374D;
 }
 
 .searchInput {
+    background: none;
     border: none;
     outline: none;
     border-bottom: 1px solid gray;
+    font-style: italic;
     margin-left: 5px;
     padding: 5px;
     padding-left: 25px;
