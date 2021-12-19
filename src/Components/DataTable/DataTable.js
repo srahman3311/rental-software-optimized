@@ -21,7 +21,7 @@ const DataTable = () => {
   const [searchText, setSearchText] = useState("");
   
   // Custom hook calls
-  const { data, options } = useLocalStorage();
+  const { data, options, bookableProductOptions, returnableProductOptions } = useLocalStorage();
   const tableData = useSearch(searchText);
 
   // Other states
@@ -136,7 +136,7 @@ const DataTable = () => {
     <BookProduct 
       selectedProductInfo = {selectedProductInfo} 
       setShowMainModal = {setShowModal}
-      options = {options} 
+      options = {bookableProductOptions} 
       repairOptions = {repairOptions}
       handleSelect = {handleSelect}
       updateStorage = {updateStorage}
@@ -145,7 +145,7 @@ const DataTable = () => {
     <ReturnProduct 
       selectedProductInfo = {selectedProductInfo}
       setShowMainModal = {setShowModal} 
-      options = {options}
+      options = {returnableProductOptions}
       repairOptions = {repairOptions}
       handleSelect = {handleSelect}
       updateStorage = {updateStorage}
